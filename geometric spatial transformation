@@ -1,0 +1,26 @@
+% Define the input image or matrix 'a'
+a = imread('cameraman.tif'); % Example grayscale image
+a = double(a); % Convert to double for processing
+
+% Get the size of the input image
+[n, m] = size(a);
+
+% Create a new matrix with the same dimensions, plus padding for shifting
+b = zeros(n + 5, m + 5);
+
+% Apply the transformation
+for i = 1:n
+    for j = 1:m
+        b(i + 5, j + 5) = a(i, j);
+    end
+end
+
+% Display original and transformed images
+figure;
+subplot(1, 2, 1);
+imshow(uint8(a));
+title('Original Image');
+
+subplot(1, 2, 2);
+imshow(uint8(b));
+title('Transformed Image (Shifted by 5)');
